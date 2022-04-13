@@ -5,6 +5,8 @@ extraEnv:
   INIT_FLAG: "true"
   env_ems_svc: ems-svc.ems.svc.cluster.local
   env_ems_svc_port: 30722
+  env_ems_user: admin
+  env_ems_new_password: admin
 secret:
   env_ems_user: YWRtaW4=
   env_ems_password:

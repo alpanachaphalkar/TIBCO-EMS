@@ -1,10 +1,10 @@
 apiVersion: v1
 data:
   ems-config.template: |-
-    setprop factory TopicConnectionFactory URL=tcp://${env_ems_svc}:${env_ems_svc_port}
-    setprop factory QueueConnectionFactory URL=tcp://${env_ems_svc}:${env_ems_svc_port}
-    setprop factory GenericConnectionFactory URL=tcp://${env_ems_svc}:${env_ems_svc_port}
-    set password ${env_ems_user} ${env_ems_new_password}
+    set password {{ .Values.extraEnv.env_ems_user }} {{ .Values.extraEnv.env_ems_new_password }}
+    setprop factory TopicConnectionFactory URL=tcp://{{ .Values.extraEnv.env_ems_svc }}:{{ .Values.extraEnv.env_ems_svc_port }}
+    setprop factory QueueConnectionFactory URL=tcp://{{ .Values.extraEnv.env_ems_svc }}:{{ .Values.extraEnv.env_ems_svc_port }}
+    setprop factory GenericConnectionFactory URL=tcp://{{ .Values.extraEnv.env_ems_svc }}:{{ .Values.extraEnv.env_ems_svc_port }}
     commit
 kind: ConfigMap
 metadata:
