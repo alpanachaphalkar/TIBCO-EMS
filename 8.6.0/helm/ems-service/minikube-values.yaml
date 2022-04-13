@@ -1,0 +1,50 @@
+emsVersion: "8.6.0"
+environment: dev
+name: ems
+extraEnv:
+  INIT_FLAG: "true"
+  env_ems_svc: ems-svc.ems.svc.cluster.local
+  env_ems_svc_port: 30722
+secret:
+  env_ems_user: YWRtaW4=
+  env_ems_password: YWRtaW4=
+  env_ems_new_password: YWRtaW4=
+ems:
+  image:
+    registry: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems
+    client:
+      repository: tibco/ems-client
+      tag: "8.6.0"
+    server:
+      repository: ems-server
+      tag: "8.6.0"
+    pullPolicy: Never
+  ports:
+    tibemsd-tcp: 7222
+    probe-tcp: 7220
+  containers:
+    mountPath: /shared
+    EMS_PUBLIC_PORT: 30722
+    EMS_SERVICE_NAME: ems
+    EMS_PROBE_PORT: 7220
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    liveness:
+      initialDelaySeconds:  5
+      timeoutSeconds: 5
+      periodSeconds: 6
+    readiness:
+      initialDelaySeconds:  5
+      timeoutSeconds: 5
+      periodSeconds: 6
+    resources:
+      requests:
+        cpu: 0.5
+        memory: 512Mi
+      limits:
+        cpu: 1
+        memory: 2Gi
+  service:
+    port:  30722
+    targetPort: 7222
+    type: LoadBalancer

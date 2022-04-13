@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.name }}
+  labels:
+{{ include "ems.labels" $ | indent 4 }}
+spec:
+  serviceName: {{ .Values.name }}
+  replicas: 1
+  selector:
+    matchLabels:
+{{ include "ems.selectorLabels" $ | indent 6 }}
+  template:
+    metadata:
+      labels:
+{{ include "ems.selectorLabels" $ | indent 8 }}
+    spec:
+      initContainers:
+      - name: volume-mount-hack
+        image: busybox:latest
+        command: ["sh", "-c", "chmod -R 777 /shared"]
+        volumeMounts:
+        - name: tibemsd-volume
+          mountPath: {{ .Values.ems.containers.mountPath }}
+      containers:
+        - name: tibemsd-container
+          image: "{{ .Values.ems.image.registry }}/{{ .Values.ems.image.server.repository }}:{{ .Values.ems.image.server.tag | default .Values.emsVersion }}"
+          imagePullPolicy: {{ .Values.ems.image.pullPolicy }}
+          env:
+          - name: EMS_PUBLIC_PORT
+            value: "{{.Values.ems.containers.EMS_PUBLIC_PORT }}"
+          - name: EMS_SERVICE_NAME
+            value: "{{.Values.ems.containers.EMS_SERVICE_NAME }}"
+          - name: EMS_PROBE_PORT
+            value: "{{.Values.ems.containers.EMS_PROBE_PORT }}"
+          - name: EMS_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          args:
+          - 'tibemsd'
+          livenessProbe:
+            httpGet:
+              path: /isLive
+              port: probe-tcp
+            initialDelaySeconds: {{ .Values.ems.containers.liveness.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.ems.containers.liveness.timeoutSeconds }}
+            periodSeconds: {{ .Values.ems.containers.liveness.periodSeconds }}
+          readinessProbe:
+            httpGet:
+              path: /isReady
+              port: probe-tcp
+            initialDelaySeconds: {{ .Values.ems.containers.readiness.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.ems.containers.readiness.timeoutSeconds }}
+            periodSeconds: {{ .Values.ems.containers.readiness.periodSeconds }}
+          ports:
+{{- range $key, $val := .Values.ems.ports }}
+          - name: {{ $key }}
+            containerPort: {{ $val }}
+{{- end }}
+          securityContext:
+            runAsUser: 1000
+          terminationMessagePath: {{ .Values.ems.containers.terminationMessagePath }}
+          terminationMessagePolicy: {{ .Values.ems.containers.terminationMessagePolicy }}
+          volumeMounts:
+          - name: tibemsd-volume
+            mountPath: {{ .Values.ems.containers.mountPath }}
+          resources:
+            limits:
+              cpu: {{ .Values.ems.containers.resources.limits.cpu }}
+              memory: {{ .Values.ems.containers.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.ems.containers.resources.requests.cpu }}
+              memory: {{ .Values.ems.containers.resources.requests.memory }}
+      volumes:
+        - name: tibemsd-volume
+          hostPath:
+            path: "/home/docker/ems-local-storage-volume"
+            type: DirectoryOrCreate
