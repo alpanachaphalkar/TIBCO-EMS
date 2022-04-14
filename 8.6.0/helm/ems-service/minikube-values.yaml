@@ -9,7 +9,7 @@ extraEnv:
   env_ems_new_password: admin
 secret:
   env_ems_user: YWRtaW4=
-  env_ems_password:
+  env_ems_password: YWRtaW4=
   env_ems_new_password: YWRtaW4=
 ems:
   image:
