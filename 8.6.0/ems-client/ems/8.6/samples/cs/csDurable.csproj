@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSamplePropertyGroup.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>csDurable</StartupObject>
+  </PropertyGroup>
+ 
+  <ItemGroup>
+    <Compile Include="csDurable.cs" />
+    <Compile Include="tibemsUtilities.cs" />
+  </ItemGroup>
+
+</Project>

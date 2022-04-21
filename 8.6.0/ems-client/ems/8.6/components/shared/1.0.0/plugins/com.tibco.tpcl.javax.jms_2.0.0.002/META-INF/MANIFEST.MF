@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Export-Package: javax.jms;version="2.0.0";uses:="javax.transaction.xa"
+Bundle-Vendor: %providerName
+Bundle-ClassPath: jms-2.0.jar
+Bundle-Version: 2.0.0.002
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Import-Package: javax.jms;version="2.0.0",javax.transaction.xa;version
+ ="[1.0.1,2.0.0)"
+Bundle-SymbolicName: com.tibco.tpcl.javax.jms
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+

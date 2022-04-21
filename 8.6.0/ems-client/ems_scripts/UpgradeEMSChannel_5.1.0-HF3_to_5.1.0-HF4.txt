@@ -1,0 +1,42 @@
+# Delete Old Bridges 
+delete bridge source=queue:tibco.aff.orchestrator.outbound.notification target=queue:tibco.aff.orchestrator.archival.notification
+delete bridge source=queue:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.order
+delete bridge source=queue:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.orderAmendment
+delete bridge source=queue:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.orderLine
+delete bridge source=queue:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.plan
+delete bridge source=queue:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.planItem
+delete bridge source=queue:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.order
+delete bridge source=queue:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.plan
+delete bridge source=queue:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.plan.create
+delete bridge source=queue:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.planitem.execute.request
+delete bridge source=queue:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.planitem.execute.response
+
+# Delete Old Queues
+delete queue tibco.aff.orchestrator.outbound.notification
+
+# Create a new Topic
+create topic tibco.aff.orchestrator.outbound.notification
+
+# Create new bridges
+create bridge source=topic:tibco.aff.orchestrator.outbound.notification target=queue:tibco.aff.orchestrator.archival.notification
+create bridge source=topic:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.order selector="NotificationType='ORDER'"
+create bridge source=topic:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.orderAmendment selector="NotificationType='ORDERAMENDMENT'"
+create bridge source=topic:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.orderLine selector="NotificationType='ORDERLINE'"
+create bridge source=topic:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.plan selector="NotificationType='PLAN'"
+create bridge source=topic:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.planItem selector="NotificationType='PLANITEM'"
+create bridge source=topic:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.order selector="NotificationType='ORDER'"
+create bridge source=topic:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.plan selector="NotificationType='PLAN'"
+create bridge source=topic:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.plan.create selector="NotificationType='PLANDEVELOPMENT'"
+create bridge source=topic:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.planitem.execute.request selector="NotificationType='PLANITEM' AND Action='REQUEST'"
+create bridge source=topic:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.planitem.execute.response selector="NotificationType='PLANITEM' AND Action='RESPONSE'"	
+
+# Create new Queues
+create queue tibco.aff.catalog.product.request.single
+create queue tibco.aff.catalog.planfragment.request.single
+create queue tibco.aff.catalog.action.request.single
+create queue tibco.aff.catalog.product.request.dead
+create queue tibco.aff.catalog.planfragment.request.dead
+create queue tibco.aff.catalog.action.request.dead
+create queue tibco.aff.catalog.product.request.single.dead
+create queue tibco.aff.catalog.planfragment.request.single.dead
+create queue tibco.aff.catalog.action.request.single.dead

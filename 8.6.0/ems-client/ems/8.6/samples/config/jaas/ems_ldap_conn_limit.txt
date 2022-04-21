@@ -1,0 +1,11 @@
+EMSUserAuthentication {    
+    com.tibco.tibems.tibemsd.security.jaas.LDAPSimpleAuthentication requisite
+    debug="true"
+    tibems.ldap.user_pattern="uid=%u,ou=People,dc=tibco,dc=com"
+    tibems.ldap.url="ldap://localhost:389" ;
+    
+    com.tibco.tibems.tibemsd.security.jaas.ConnectionLimitAuthentication requisite
+    debug="true"
+    tibems.connectionlimit.max_connections="5"
+    tibems.connectionlimit.type="LDAPID" ;
+};

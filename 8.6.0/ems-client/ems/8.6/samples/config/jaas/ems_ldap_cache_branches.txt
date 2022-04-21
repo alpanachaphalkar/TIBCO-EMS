@@ -1,0 +1,22 @@
+EMSUserAuthentication {
+    com.tibco.tibems.tibemsd.security.jaas.LDAPAuthentication sufficient
+    debug="true"
+    tibems.ldap.url="ldap://localhost:389"
+    tibems.ldap.user_base_dn="ou=People,dc=internal,dc=tibco,dc=com"
+    tibems.cache.enabled="true"
+    tibems.cache.instance="user-cache"
+    tibems.cache.user_ttl="600"
+    tibems.ldap.manager="CN=Manager"
+    tibems.ldap.manager_password="$man$izdelftWtuiVogOC-eNOA2CqJci" ;
+
+    com.tibco.tibems.tibemsd.security.jaas.LDAPAuthentication sufficient
+    debug="true"
+    tibems.ldap.url="ldap://localhost:389"
+    tibems.ldap.user_base_dn="ou=People,dc=external,dc=tibco,dc=com"
+    tibems.cache.enabled="true"
+    tibems.cache.instance="user-cache"
+    tibems.cache.user_ttl="600"
+    tibems.ldap.manager="CN=Manager"
+    tibems.ldap.manager_password="$man$izdelftWtuiVogOC-eNOA2CqJci" ;
+};
+

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSamplePropertyGroup.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>csLookupLDAP</StartupObject>
+    <AssemblyName>csLookupLDAP</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="csLookupLDAP.cs" />
+    <PackageReference Include="System.DirectoryServices.Protocols" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,113 @@
+# $Id: tibemsca-template.yaml 107244 2019-02-11 22:36:57Z $
+apiVersion: v1
+kind: Template
+metadata:
+  name: tibemsca-template
+  annotations:
+    openshift.io/display-name: TIBCO EMS Central Administration
+    description: Central Administration for TIBCO Enterprise Message Service™ is a tool that allows administrators to make changes to multiple EMS server configurations and deploy those as a single action.
+    tags: "messaging"
+    openshift.io/provider-display-name: "TIBCO Software Inc."
+    openshift.io/documentation-url: "https://docs.tibco.com/products/tibco-enterprise-message-service"
+    openshift.io/support-url: "https://www.tibco.com/services/support"
+objects:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    labels:
+      name: ${EMSCA_SERVICE_NAME}
+    name: ${EMSCA_SERVICE_NAME}
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        name: ${EMSCA_SERVICE_NAME}
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        labels:
+          name: ${EMSCA_SERVICE_NAME}
+        name: ${EMSCA_SERVICE_NAME}
+      spec:
+        containers:
+        - name: tibemsca-container
+          image: ${EMS_IMAGE_LOCATION}
+          imagePullPolicy: Always
+          env:
+          - name: EMSCA_SERVICE_NAME
+            value: ${EMSCA_SERVICE_NAME}
+          args:
+          - tibemsca
+          ports:
+          - containerPort: ${{EMSCA_INTERNAL_PORT}}
+            name: tibemsca-http
+            protocol: TCP
+          resources: {}
+          securityContext:
+            runAsUser: ${{EMSCA_UID}}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /shared
+            name: tibemsca-volume
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: tibemsca-volume
+          persistentVolumeClaim:
+            claimName: ${{EMSCA_PVC}}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      description: Exposes the EMSCA HTTP port.
+    labels:
+      name: ${EMSCA_SERVICE_NAME}
+    name: ${EMSCA_SERVICE_NAME}
+  spec:
+    type: NodePort
+    ports:
+    - name: tibemsca-port
+      nodePort: ${{EMSCA_PUBLIC_PORT}}
+      port: ${{EMSCA_PUBLIC_PORT}}
+      protocol: TCP
+      targetPort: ${{EMSCA_INTERNAL_PORT}}
+    selector:
+      name: ${EMSCA_SERVICE_NAME}
+    sessionAffinity: None
+    externalTrafficPolicy: Cluster
+parameters:
+- name: EMSCA_SERVICE_NAME
+  displayName: EMS Central Administration Service Name
+  description: The name of the EMS Central Administration service in the cluster.
+  required: true
+  value: emscadev01
+- name: EMSCA_PUBLIC_PORT
+  displayName: Public Listen Port
+  description: The port number through which the EMS Central Administration server should be accessible.
+  value: "7080"
+  required: true
+- name: EMSCA_INTERNAL_PORT
+  displayName: Internal Listen Port
+  description: The port number used by the EMS Central Administration server inside its container.
+  value: "8080"
+  required: true
+- name: EMSCA_UID
+  displayName: User ID
+  description: The user ID the EMS Central Administration server container must run as with respect to accessing NFS.
+  value: "12500"
+  required: true
+- name: EMS_IMAGE_LOCATION
+  displayName: EMS Docker Image Location
+  description: The location of the EMS Docker image.
+  value: "docker.company.com/path/ems"
+  required: true
+- name: EMSCA_PVC
+  displayName: Persistent Volume Claim Name
+  description: The name of the persistent volume claim where the EMS Central Administration server configuration and work files are located.
+  value: "claim-nfs-ems-project"
+  required: true

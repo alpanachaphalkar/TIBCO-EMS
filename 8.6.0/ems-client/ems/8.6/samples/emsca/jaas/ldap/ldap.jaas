@@ -1,0 +1,20 @@
+tibemsca {
+  org.eclipse.jetty.jaas.spi.LdapLoginModule required
+  debug="true"
+  contextFactory="com.sun.jndi.ldap.LdapCtxFactory"
+  hostname="<ldap host name>"
+  port="<ldap port>"
+  bindDn="cn=<ldap login user>"
+  bindPassword="<ldap login password>"
+  authenticationMethod="simple"
+  forceBindingLogin="false"
+  userBaseDn="ou=people,dc=<dc for emsca information>"
+  userRdnAttribute="uid"
+  userIdAttribute="uid"
+  userPasswordAttribute="<attribute for password>"
+  userObjectClass="inetOrgPerson"
+  roleBaseDn="ou=groups,dc=<dc for emsca role information>"
+  roleNameAttribute="cn"
+  roleMemberAttribute="uniqueMember"
+  roleObjectClass="groupOfUniqueNames";
+   };

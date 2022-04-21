@@ -1,0 +1,32 @@
+TIBCO Enterprise Message Service(TM) Reminder Notice 
+
+Unless you are current on Maintenance, you may not use any new Software version releases or components made available after the Maintenance expiration date. Access to new versions of platforms post initial delivery of the Software is limited to Customers current on Maintenance. 
+
+Bill of Materials Change History
+
+     Product Version: 8.1.0
+          TIBCO Enterprise Message Service(TM) Distribution for TIBCO Silver(R) Fabric 8.1.0 - Added: 2014-09-12
+
+     Product Version: 8.2.0
+          TIBCO Enterprise Message Service(TM) Distribution for TIBCO Silver(R) Fabric 8.2.0 - Added: 2014-11-21
+          TIBCO(R) Enterprise Administrator 2.1.0 - Added: 2014-11-21
+
+     Product Version: 8.2.1
+          TIBCO Enterprise Message Service(TM) Distribution for TIBCO Silver(R) Fabric 8.2.1 - Added: 2015-04-16
+
+     Product Version: 8.2.2
+          TIBCO Enterprise Message Service(TM) Distribution for TIBCO Silver(R) Fabric 8.2.2 - Added: 2015-10-20
+
+     Product Version: 8.4.0
+          TIBCO Enterprise Message Service(TM) Distribution for TIBCO Silver(R) Fabric 8.4.0 - Added: 2017-09-26
+
+     Product Version: 8.5.0
+          TIBCO Enterprise Message Service(TM) Distribution for TIBCO Silver(R) Fabric 8.5.0 - Added: 2019-07-01
+
+     Product Version: 8.5.1
+          TIBCO Enterprise Message Service(TM) OpenVMS C Client 8.5.1 - Added: 2019-11-12
+          TIBCO Enterprise Message Service(TM) Distribution for TIBCO Silver(R) Fabric 8.5.1 - Added: 2020-01-07 
+
+Supported Platforms Change History
+
+     No Change

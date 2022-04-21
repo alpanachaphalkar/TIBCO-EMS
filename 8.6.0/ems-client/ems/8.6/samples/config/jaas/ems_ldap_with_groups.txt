@@ -1,0 +1,19 @@
+EMSUserAuthentication {
+    com.tibco.tibems.tibemsd.security.jaas.LDAPGroupUserAuthentication required
+    debug="true"
+    tibems.ldap.url="ldap://localhost:389"
+    tibems.ldap.manager="cn=Manager"
+    tibems.ldap.manager_password="password"
+    tibems.ldap.user_base_dn="ou=People,dc=tibco,dc=com"
+    tibems.ldap.user_attribute="uid"
+    tibems.ldap.scope="subtree"
+    tibems.ldap.user_filter="(&(uid={1})(objectClass=person))"
+    tibems.ldap.group_base_dn="ou=Groups,dc=tibco,dc=com"
+    tibems.ldap.group_scope="subtree"
+    tibems.ldap.group_filter="(&({0}={1})(objectClass=groupOfUniqueNames))"
+    tibems.ldap.group_member_attribute="uniqueMember"
+    tibems.ldap.group_attribute="cn"
+    tibems.cache.enabled="true"
+    tibems.cache.user_ttl="600";
+};
+

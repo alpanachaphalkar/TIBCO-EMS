@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSampleAdminProperty.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>csConnectionFactory</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="csConnectionFactory.cs" />
+  </ItemGroup>
+
+</Project>

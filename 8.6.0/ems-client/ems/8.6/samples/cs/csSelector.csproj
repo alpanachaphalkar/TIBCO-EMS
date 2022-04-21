@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSamplePropertyGroup.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>csSelector</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="csSelector.cs" />
+    <Compile Include="tibemsUtilities.cs" />
+  </ItemGroup>
+
+</Project>

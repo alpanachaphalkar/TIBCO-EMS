@@ -11,9 +11,9 @@ metadata:
 spec:
   containers:
   - name: ems-client-container
-    image: "{{ .Values.ems.image.client.repository }}:{{ .Values.ems.image.client.tag | default .Values.emsVersion }}"
+    image: "{{ .Values.ems.image.client.repository }}:{{ .Values.ems.image.client.tag }}"
     command: [ "/bin/sh" ]
-    args: [ "-c", "tibemsadmin -server tcp://${env_ems_svc}:${env_ems_svc_port} -user ${env_ems_user} -ignore -password ${env_ems_password} -script /home/tibuser/tibco/config_template/ems-config.template" ]
+    args: [ "-c", "tibemsadmin -server tcp://${env_ems_svc}:${env_ems_svc_port} -user ${env_ems_user} -ignore -script /home/tibuser/tibco/config_template/ems-config.template && sh /home/tibuser/tibco/entrypoint.sh" ]
     imagePullPolicy: {{ .Values.ems.image.pullPolicy }}
     env:
     - name: INIT_FLAG

@@ -15,6 +15,8 @@ spec:
       labels:
 {{ include "ems.selectorLabels" $ | indent 8 }}
     spec:
+      imagePullSecrets:
+        - name: {{ .Values.ems.image.server.imagePullSecrets }}
       initContainers:
       - name: volume-mount-hack
         image: busybox:latest
@@ -74,6 +76,5 @@ spec:
               memory: {{ .Values.ems.containers.resources.requests.memory }}
       volumes:
         - name: tibemsd-volume
-          hostPath:
-            path: "/home/docker/ems-local-storage-volume"
-            type: DirectoryOrCreate
+          persistentVolumeClaim:
+            claimName: tibemsd-pvc

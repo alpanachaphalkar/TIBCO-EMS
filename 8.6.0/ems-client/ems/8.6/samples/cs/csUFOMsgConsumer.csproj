@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSamplePropertyGroup.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>csUFOMsgConsumer</StartupObject>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <Compile Include="csUFOMsgConsumer.cs" />
+    <Compile Include="tibemsUtilities.cs" />
+    <Reference Include="TIBCO.EMS.UFO">
+      <HintPath>$(DLLDir)TIBCO.EMS.UFO.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

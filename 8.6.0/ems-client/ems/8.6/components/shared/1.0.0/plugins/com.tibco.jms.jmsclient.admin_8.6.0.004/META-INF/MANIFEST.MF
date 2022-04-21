@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: com.tibco.jms.jmsclient.admin
+Bundle-Version: 8.6.0.004
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: com.tibco.tibjms.admin;version="8.6.0";
+  uses:="javax.jms,
+   javax.net.ssl,
+   javax.security.auth.x500"
+Bundle-ClassPath: tibjmsadmin.jar
+Import-Package: com.tibco.tibjms;version="[8.6.0,9.0.0)",
+ com.tibco.tibjms.admin;version="[8.6.0,9.0.0)",
+ com.tibco.tibjms.naming;version="[8.6.0,9.0.0)",
+ com.tibco.tibjms.naming.tibjmsnaming;version="[8.6.0,9.0.0)",
+ javax.jms;version="2.0.0",
+ javax.net.ssl,
+ javax.security.auth.x500
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+

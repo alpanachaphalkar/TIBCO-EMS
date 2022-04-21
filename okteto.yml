@@ -1,0 +1,40 @@
+name: tibco
+
+# The build section defines how to build the images of your development environment
+# More info: https://www.okteto.com/docs/reference/manifest/#build
+#build:
+#  base:
+#    context: tibco/base/1.0
+#  ems-client:
+#    context: 8.6.0/ems-client
+#    args:
+#      EMS_VERSION: "8.6"
+
+
+# The deploy section defines how to deploy your development environment
+# More info: https://www.okteto.com/docs/reference/manifest/#deploy
+deploy:
+  commands:
+    - name: Deploy
+      command: helm install ems-service -f 8.6.0/helm/ems-service/minikube-values.yaml 8.6.0/helm/ems-service
+
+# The dependencies section defines other git repositories to be deployed as part of your development environment
+# More info: https://www.okteto.com/docs/reference/manifest/#dependencies
+# dependencies:
+#   - https://github.com/okteto/sample
+
+
+# The dev section defines how to activate a development container
+# More info: https://www.okteto.com/docs/reference/manifest/#dev
+# dev:
+#   sample:
+#     image: okteto/dev:latest
+#     command: bash
+#     workdir: /usr/src/app
+#     sync:
+#       - .:/usr/src/app
+#     environment:
+#       - name=$USER
+#     forward:
+#       - 8080:80
+

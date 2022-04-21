@@ -1,0 +1,13 @@
+create queue tibco.aff.orchestrator.archival.notification
+create queue tibco.aff.orchestrator.archival.notification.dead
+create queue tibco.aff.oms.ordersSequencer.notification.order
+create queue tibco.aff.oms.ordersSequencer.notification.order.dead
+create topic tibco.fos.global.cache.clean.publish
+
+create bridge source=queue:tibco.aff.orchestrator.outbound.notification target=queue:tibco.aff.orchestrator.archival.notification
+create bridge source=queue:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.order selector="NotificationType='ORDER'"
+create bridge source=queue:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.orderAmendment selector="NotificationType='ORDERAMENDMENT'"
+create bridge source=queue:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.orderLine selector="NotificationType='ORDERLINE'"
+create bridge source=queue:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.plan selector="NotificationType='PLAN'"
+create bridge source=queue:tibco.aff.orchestrator.outbound.notification target=topic:tibco.aff.orchestrator.notification.planItem selector="NotificationType='PLANITEM'"
+commit

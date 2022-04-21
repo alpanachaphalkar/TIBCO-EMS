@@ -1,0 +1,12 @@
+EMSUserAuthentication {
+    com.tibco.tibems.tibemsd.security.jaas.HostBasedAuthentication required
+    debug="true"
+    tibems.hostbased.accepted_addresses="127.0.0.1,::1"
+    tibems.hostbased.accepted_hostnames="'.tibco.com'" ;
+
+    com.tibco.tibems.tibemsd.security.jaas.LDAPSimpleAuthentication required
+    debug="true"
+    tibems.ldap.user_pattern="uid=%u,ou=People,dc=tibco,dc=com"
+    tibems.ldap.url="ldap://localhost:389" ;
+};
+

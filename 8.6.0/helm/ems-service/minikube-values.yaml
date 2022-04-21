@@ -3,7 +3,7 @@ environment: dev
 name: ems
 extraEnv:
   INIT_FLAG: "true"
-  env_ems_svc: ems-svc.ems.svc.cluster.local
+  env_ems_svc: ems-svc.ems-alpanachaphalkar.svc.cluster.local
   env_ems_svc_port: 30722
   env_ems_user: admin
   env_ems_new_password: admin
@@ -15,12 +15,13 @@ ems:
   image:
     registry: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems
     client:
-      repository: tibco/ems-client
-      tag: "8.6.0"
+      repository: registry.cloud.okteto.net/ems-alpanachaphalkar/tibco-ems-client
+      tag: "okteto"
     server:
       repository: ems-server
       tag: "8.6.0"
-    pullPolicy: Never
+      imagePullSecrets: gcr-registry
+    pullPolicy: IfNotPresent
   ports:
     tibemsd-tcp: 7222
     probe-tcp: 7220

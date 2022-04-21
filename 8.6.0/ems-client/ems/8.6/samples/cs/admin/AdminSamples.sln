@@ -1,0 +1,36 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csACL", "csACL.csproj", "{5D64863A-4763-47D5-96E4-55C45F9C1BBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csConnectionFactory", "csConnectionFactory.csproj", "{B6D192B6-B390-4142-83EC-88990A25E1B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csRoute", "csRoute.csproj", "{3C98128D-264D-4117-A261-6B86536F9570}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csServer", "csServer.csproj", "{DF9F5EDC-C0B9-46AF-BA2D-A94EAB9E77D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csUsersGroups", "csUsersGroups.csproj", "{8000A3D8-8175-498A-BA7B-7EE5D66C2BA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		
+		{5D64863A-4763-47D5-96E4-55C45F9C1BBA}.Release|x64.ActiveCfg = Release|x64
+		{5D64863A-4763-47D5-96E4-55C45F9C1BBA}.Release|x64.Build.0 = Release|x64
+		{B6D192B6-B390-4142-83EC-88990A25E1B8}.Release|x64.ActiveCfg = Release|x64
+		{B6D192B6-B390-4142-83EC-88990A25E1B8}.Release|x64.Build.0 = Release|x64
+		{3C98128D-264D-4117-A261-6B86536F9570}.Release|x64.ActiveCfg = Release|x64
+		{3C98128D-264D-4117-A261-6B86536F9570}.Release|x64.Build.0 = Release|x64
+		{DF9F5EDC-C0B9-46AF-BA2D-A94EAB9E77D3}.Release|x64.ActiveCfg = Release|x64
+		{DF9F5EDC-C0B9-46AF-BA2D-A94EAB9E77D3}.Release|x64.Build.0 = Release|x64
+		{8000A3D8-8175-498A-BA7B-7EE5D66C2BA2}.Release|x64.ActiveCfg = Release|x64
+		{8000A3D8-8175-498A-BA7B-7EE5D66C2BA2}.Release|x64.Build.0 = Release|x64
+		
+	EndGlobalSection
+EndGlobal

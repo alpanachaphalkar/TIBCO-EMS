@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSamplePropertyGroup.targets"/>
+  
+  <PropertyGroup>
+    <StartupObject>csAsyncMsgConsumer</StartupObject>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Compile Include="csAsyncMsgConsumer.cs" />
+    <Compile Include="tibemsUtilities.cs" />
+  </ItemGroup>
+
+</Project>

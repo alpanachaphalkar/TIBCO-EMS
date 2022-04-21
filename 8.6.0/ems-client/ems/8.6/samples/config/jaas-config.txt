@@ -1,0 +1,6 @@
+EMSUserAuthentication {
+    com.tibco.tibems.tibemsd.security.jaas.HostBasedAuthentication required
+    debug="true"
+    tibems.hostbased.accepted_addresses="127.0.0.1,10.98.0.0/16,::1,fe80:0:0:0:5c5f:0:0:0/80"
+    tibems.hostbased.accepted_hostnames="'.tibco.com'" ;
+};

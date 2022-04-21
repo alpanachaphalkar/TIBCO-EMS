@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.tibco.jms.jmsclient.feature"
+      label="%featureName"
+      version="8.6.0.004"
+      provider-name="%providerName">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import feature="com.tibco.tpcl.javax.jms.feature" version="2.0.0"/>
+      <import feature="com.tibco.tpcl.javax.system.exports.feature" version="5.0.0" match="compatible"/>
+      <import feature="com.tibco.tpcl.javax.transaction.feature" version="1.1.0" match="compatible"/>
+   </requires>
+
+   <plugin
+         id="com.tibco.jms.jmsclient.admin"
+         download-size="0"
+         install-size="0"
+         version="8.6.0.004"/>
+
+   <plugin
+         id="com.tibco.jms.jmsclient.rv"
+         download-size="0"
+         install-size="0"
+         version="8.6.0.004"/>
+
+   <plugin
+         id="com.tibco.jms.jmsclient"
+         download-size="0"
+         install-size="0"
+         version="8.6.0.004"/>
+
+   <plugin
+         id="com.tibco.jms.jmsclient.ufo"
+         download-size="0"
+         install-size="0"
+         version="8.6.0.004"/>
+
+</feature>

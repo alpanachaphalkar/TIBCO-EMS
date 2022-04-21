@@ -2,10 +2,6 @@ kind: Service
 apiVersion: v1
 metadata:
   name: {{.Values.name }}-svc
-  {{- if eq .Values.ems.service.type "LoadBalancer" }}
-  annotations:
-    networking.gke.io/load-balancer-type: "Internal"
-  {{- end }}
   labels:
 {{ include "ems.labels" $ | indent 4 }}
 spec:

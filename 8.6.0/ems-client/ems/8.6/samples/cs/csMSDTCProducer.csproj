@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSamplePropertyGroup.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>csMSDTCProducer</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Transactions"/>
+    <Compile Include="csMSDTCProducer.cs" />
+    <Compile Include="tibemsUtilities.cs" />
+  </ItemGroup>
+
+</Project>

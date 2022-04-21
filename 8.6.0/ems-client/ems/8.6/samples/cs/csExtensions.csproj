@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSamplePropertyGroup.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>csExtensions</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="csExtensions.cs" />
+  </ItemGroup>
+
+</Project>

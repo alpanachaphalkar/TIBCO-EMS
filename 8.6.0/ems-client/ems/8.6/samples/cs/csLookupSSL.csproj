@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSamplePropertyGroup.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>csLookupSSL</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="csLookupSSL.cs" />
+  </ItemGroup>
+
+</Project>
