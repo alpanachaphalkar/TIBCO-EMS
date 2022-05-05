@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSamplePropertyGroup.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>tibemsSSL</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="tibemsSSL.cs" />
+  </ItemGroup>
+
+</Project>

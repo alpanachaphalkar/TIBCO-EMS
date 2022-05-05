@@ -1,0 +1,5 @@
+EMSUserAuthentication {
+    com.tibco.example.FlatFileUserAuthLoginModule   required
+        debug=true 
+        filename="../security/userpass.txt";
+};

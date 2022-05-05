@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSampleAdminProperty.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>csACL</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="csACL.cs" />
+  </ItemGroup>
+
+</Project>

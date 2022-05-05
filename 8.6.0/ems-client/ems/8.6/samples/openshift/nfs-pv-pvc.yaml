@@ -1,0 +1,32 @@
+# $Id: nfs-pv-pvc.yaml 101452 2018-05-25 20:40:09Z $
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-nfs-ems-project
+  annotations:
+    # Should be replaced by spec.mountOptions in the future
+    volume.beta.kubernetes.io/mount-options: soft
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    path: /vol/home/user/OpenShift/shared
+    server: 10.98.128.50
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+    name: claim-nfs-ems-project
+    namespace: ems-project
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: claim-nfs-ems-project
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: pv-nfs-ems-project

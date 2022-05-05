@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSamplePropertyGroup.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>emsSSLGlobal</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="emsSSLGlobal.cs" />
+  </ItemGroup>
+
+</Project>

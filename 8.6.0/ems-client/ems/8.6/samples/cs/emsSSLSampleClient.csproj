@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSamplePropertyGroup.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>emsSSLSampleClient</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="emsSSLSampleClient.cs" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,5 @@
+tibemsca {
+       org.eclipse.jetty.jaas.spi.PropertyFileLoginModule required
+       debug="true"
+       file="/path/to/jaas/users.txt";
+};

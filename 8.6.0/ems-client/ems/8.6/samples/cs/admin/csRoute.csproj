@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSampleAdminProperty.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>csRoute</StartupObject>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Compile Include="csRoute.cs" />
+  </ItemGroup>
+
+</Project>

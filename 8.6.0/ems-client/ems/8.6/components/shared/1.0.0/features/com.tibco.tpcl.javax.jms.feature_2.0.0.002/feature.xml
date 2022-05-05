@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.tibco.tpcl.javax.jms.feature"
+      label="%featureName"
+      version="2.0.0.002"
+      provider-name="%providerName">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import feature="com.tibco.tpcl.javax.transaction.feature" version="1.0.1" match="compatible"/>
+   </requires>
+
+   <plugin
+         id="com.tibco.tpcl.javax.jms"
+         download-size="0"
+         install-size="0"
+         version="2.0.0.002"/>
+
+</feature>

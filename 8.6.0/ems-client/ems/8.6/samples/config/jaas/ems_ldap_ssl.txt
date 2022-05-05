@@ -1,0 +1,11 @@
+EMSUserAuthentication {
+    com.tibco.tibems.tibemsd.security.jaas.LDAPAuthentication required
+    debug="true"
+    tibems.ldap.url="ldaps://localhost:636"
+    tibems.ldap.truststore="/certs/jssecacerts"
+    tibems.ldap.user_base_dn="ou=People,dc=tibco,dc=com"
+    tibems.ldap.user_attribute="uid"
+    tibems.ldap.manager="CN=Manager"
+    tibems.ldap.manager_password="$man$izdelftWtuiVogOC-eNOA2CqJci" ;
+};
+

@@ -1,0 +1,4 @@
+guest:     guest-pw,     emsca-guest
+admin:     admin-pw,     emsca-admin
+all:       all-pw,       emsca-guest,emsca-admin
+nogroup:   nogroup-pw

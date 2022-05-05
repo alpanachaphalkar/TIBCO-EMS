@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSamplePropertyGroup.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>csLookup</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="csLookup.cs" />
+  </ItemGroup>
+
+</Project>

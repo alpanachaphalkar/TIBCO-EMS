@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSampleAdminProperty.targets"/>
+
+  <PropertyGroup>
+    <StartupObject>csServer</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="csServer.cs" />
+  </ItemGroup>
+
+</Project>

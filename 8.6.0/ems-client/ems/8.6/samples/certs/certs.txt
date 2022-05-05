@@ -1,0 +1,20 @@
+server_root.key.pem: private key for server_root.cert.pem, strength=2048
+server_root.key.p8: PKCS8 encoding of server_root.key.pem
+server_root.cert.pem: self-signed root certificate
+server.key.pem: private key for server.cert.pem, strength=2048
+server.key.p8: PKCS8 encoding of server.key.pem
+server.cert.pem: signed by server_root.cert.pem
+client_root.key.pem: private key for client_root.cert.pem, strength=2048
+client_root.key.p8: PKCS8 encoding of client_root.key.pem
+client_root.cert.pem: self-signed root certificate
+client.key.pem: private key for client.cert.pem, strength=2048
+client.key.p8: PKCS8 encoding of client.key.pem
+client.cert.pem: signed by client_root.cert.pem
+client_identity.p12: includes client.cert.pem client.key.pem client_root.cert.pem
+test_client_ca.pem: self-signed root certificate
+test_client_cert.pem: signed by test_client_ca.pem
+test_client_crl.pem: crl for test_client_ca.pem
+test_client_identity.p12: includes test_client.cert.pem test_client_ca.pem & the private key
+emsca_https_identity.p12: includes an identity with CN=localhost to be used with EMSCA for https
+emsca_https_root.cert.pem: the corresponding self-signed root certificate
+

@@ -1,0 +1,143 @@
+# $Id: tibemsd-template.yaml 107551 2019-02-26 18:27:29Z $
+apiVersion: v1
+kind: Template
+metadata:
+  name: tibemsd-template
+  annotations:
+    openshift.io/display-name: TIBCO EMS
+    description: TIBCO Enterprise Message Service™ is TIBCO's standards-based Java™ Message Service (JMS), which allows any application that supports JMS, whether home grown or third-party, to quickly and easily exchange messages.
+    tags: "messaging"
+    openshift.io/provider-display-name: "TIBCO Software Inc."
+    openshift.io/documentation-url: "https://docs.tibco.com/products/tibco-enterprise-message-service"
+    openshift.io/support-url: "https://www.tibco.com/services/support"
+objects:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    labels:
+      name: ${EMS_SERVICE_NAME}
+    name: ${EMS_SERVICE_NAME}
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        name: ${EMS_SERVICE_NAME}
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        labels:
+          name: ${EMS_SERVICE_NAME}
+        name: ${EMS_SERVICE_NAME}
+      spec:
+        containers:
+        - name: tibemsd-container
+          image: ${EMS_IMAGE_LOCATION}
+          imagePullPolicy: Always
+          env:
+          - name: EMS_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: EMS_PUBLIC_PORT
+            value: ${EMS_PUBLIC_PORT}
+          - name: EMS_PROBE_PORT
+            value: ${EMS_PROBE_PORT}
+          - name: EMS_SERVICE_NAME
+            value: ${EMS_SERVICE_NAME}
+          args:
+          - tibemsd
+          livenessProbe:
+            httpGet:
+              path: /isLive
+              port: probe-tcp
+            initialDelaySeconds: 1
+            timeoutSeconds: 5
+            periodSeconds: 6
+          readinessProbe:
+            httpGet:
+              path: /isReady
+              port: probe-tcp
+            initialDelaySeconds: 1
+            timeoutSeconds: 5
+            periodSeconds: 6
+          ports:
+          - containerPort: ${{EMS_INTERNAL_PORT}}
+            name: tibemsd-tcp
+            protocol: TCP
+          - containerPort: ${{EMS_PROBE_PORT}}
+            name: probe-tcp
+            protocol: TCP
+          resources: {}
+          securityContext:
+            runAsUser: ${{EMS_UID}}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /shared
+            name: tibemsd-volume
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: tibemsd-volume
+          persistentVolumeClaim:
+            claimName: ${{EMS_PVC}}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      description: Exposes an EMS server listen port both inside and outside the cluster.
+    labels:
+      name: ${EMS_SERVICE_NAME}
+    name: ${EMS_SERVICE_NAME}
+  spec:
+    type: NodePort
+    ports:
+    - name: tibemsd-port
+      nodePort: ${{EMS_PUBLIC_PORT}}
+      port: ${{EMS_PUBLIC_PORT}}
+      protocol: TCP
+      targetPort: ${{EMS_INTERNAL_PORT}}
+    selector:
+      name: ${EMS_SERVICE_NAME}
+    sessionAffinity: None
+    externalTrafficPolicy: Cluster
+parameters:
+- name: EMS_SERVICE_NAME
+  displayName: EMS Service Name
+  description: The name of the service through which the EMS server is accessible inside the cluster.
+  required: true
+  value: emsdev01
+- name: EMS_PUBLIC_PORT
+  displayName: Public Listen Port
+  description: The port number through which the EMS server is accessible, both inside and outside the cluster.
+  value: "7779"
+  required: true
+- name: EMS_INTERNAL_PORT
+  displayName: Internal Listen Port
+  description: The port number used by the EMS server inside its container.
+  value: "7222"
+  required: true
+- name: EMS_PROBE_PORT
+  displayName: Health Check Probe Port
+  description: The internal port number on which the EMS server responds to health check requests.
+  value: "7220"
+  required: true
+- name: EMS_UID
+  displayName: User ID
+  description: The user ID the EMS server container must run as with respect to accessing NFS.
+  value: "12500"
+  required: true
+- name: EMS_IMAGE_LOCATION
+  displayName: EMS Docker Image Location
+  description: The location of the EMS Docker image.
+  value: "docker.company.com/path/ems"
+  required: true
+- name: EMS_PVC
+  displayName: Persistent Volume Claim Name
+  description: The name of the persistent volume claim where the EMS server store and configuration files are located.
+  value: "claim-nfs-ems-project"
+  required: true

@@ -1,0 +1,25 @@
+create queue jeopardy.plan.create
+create queue jeopardy.plan.create.dead
+create queue jeopardy.order
+create queue jeopardy.order.dead
+create queue jeopardy.plan
+create queue jeopardy.plan.dead
+create queue jeopardy.planitem.execute.request
+create queue jeopardy.planitem.execute.request.dead
+create queue jeopardy.planitem.execute.response
+create queue jeopardy.planitem.execute.response.dead
+create queue jeopardy.milestone.notify.request
+create queue jeopardy.milestone.notify.request.dead
+create queue jeopardy.milestone.release.request
+create queue jeopardy.milestone.release.request.dead
+create queue jeopardy.processcomponent.publish.queue
+create queue jeopardy.processcomponent.publish.dead.queue
+
+create bridge source=queue:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.order selector="NotificationType='ORDER'"
+create bridge source=queue:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.plan selector="NotificationType='PLAN'"
+create bridge source=queue:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.plan.create selector="NotificationType='PLANDEVELOPMENT'"
+
+create bridge source=queue:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.planitem.execute.request selector="NotificationType='PLANITEM' AND Action='REQUEST'"
+create bridge source=queue:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.planitem.execute.response selector="NotificationType='PLANITEM' AND Action='RESPONSE'"
+create bridge source=topic:tibco.fos.global.cache.clean.publish target=queue:jeopardy.processcomponent.publish.queue
+commit

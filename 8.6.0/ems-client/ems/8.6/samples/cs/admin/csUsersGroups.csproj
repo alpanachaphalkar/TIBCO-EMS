@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="commonSampleAdminProperty.targets"/>
+  <PropertyGroup>
+    <StartupObject>csUsersGroups</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="csUsersGroups.cs" />
+  </ItemGroup>
+
+</Project>
