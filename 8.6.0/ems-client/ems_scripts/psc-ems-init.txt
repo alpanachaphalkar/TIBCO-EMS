@@ -1,0 +1,38 @@
+# Create queues.
+create queue Q_ECM_CORE_ADMIN store=$sys.failsafe
+create queue Q_ECM_CORE_ASYNC_CALL store=$sys.failsafe
+create queue Q_ECM_CORE_TEXT_INDEX store=$sys.failsafe
+create queue Q_ECM_CORE_WORKFLOW store=$sys.failsafe
+create queue Q_ECM_CORE_INTERNAL_INTGR_MSG store=$sys.failsafe
+create queue Q_ECM_CORE_COMM_OUTBOUND_MSG store=$sys.failsafe
+create queue Q_ECM_CORE_COMM_OUTBOUND_MSG_SYNC_REPLY store=$sys.failsafe
+create queue Q_ECM_CORE_COMM_INBOUND_MSG store=$sys.failsafe
+create queue Q_ECM_CORE_COMM_INBOUND_MSG_SYNC_REPLY store=$sys.failsafe
+create queue Q_ECM_CORE_COMM_EVENT store=$sys.failsafe
+create queue Q_ECM_CORE_COMM_EVENT_SYNC_REPLY store=$sys.failsafe
+create queue Q_ECM_CORE_COMM_OUTBOUND_MSG_HANDLE store=$sys.failsafe
+create queue Q_ECM_INTGR_STD_OUTBOUND_INTGR_MSG store=$sys.failsafe
+create queue Q_ECM_INTGR_STD_INBOUND_INTGR_MSG store=$sys.failsafe
+create queue Q_ECM_INTGR_STD_INTGR_EVENT store=$sys.failsafe
+create queue Q_ECM_INTGR_OUTBOUND_INTGR_MSG store=$sys.failsafe
+create queue Q_ECM_INTGR_INBOUND_INTGR_MSG store=$sys.failsafe
+create queue Q_ECM_TEST_CHAT
+create queue Q_CIM_CUSTOMIZATION_BK2_INBOUND_INTGR_MSG
+create queue Q_CIM_CUSTOMIZATION_BK2_OUTBOUND_INTGR_MSG
+create queue Q_CIM_CUSTOMIZATION_BK1_OUTBOUND_INTGR_MSG
+create queue Q_CIM_CUSTOMIZATION_BK1_INBOUND_INTGR_MSG
+create queue Q_ECM_INTGR_CNE
+create queue Q_ECM_CORE_FASTCACHEASYNC_CALL store=$sys.failsafe
+
+# Create topics.
+create topic T_ECM_CORE_ADMIN store=$sys.failsafe
+create topic T_ECM_CORE_ASYNC_CALL store=$sys.failsafe
+create topic T_ECM_CORE_RULE_CACHE store=$sys.failsafe
+create topic T_ECM_CORE_DB_RESOURCES store=$sys.failsafe
+create topic T_ECM_TEST_CHAT
+create topic tibco.ac.rulemodel.topic
+create topic tibco.ac.categorymodel.topic
+create topic tibco.ac.customermodel.topic
+create topic tibco.ac.segmentmodel.topic
+
+commit

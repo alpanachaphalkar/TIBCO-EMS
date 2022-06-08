@@ -1,0 +1,2 @@
+The c3p0 source code is available as part of the c3p0 binary distribution located here:
+https://sourceforge.net/projects/c3p0/files/c3p0-bin

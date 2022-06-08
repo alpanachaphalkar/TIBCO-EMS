@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  tibco-ems-client:
+    build:
+      context: ./ems-client
+      dockerfile: Dockerfile
+      args:
+        EMS_VERSION: "8.6"
+    image: "tibco/ems-client-psc:8.6.0"
+
+# Copyright (c) 2021. TIBCO Software Inc. All Rights Reserved. Confidential & Proprietary.

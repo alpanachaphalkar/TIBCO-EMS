@@ -15,7 +15,7 @@ ems:
   image:
     registry: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems
     client:
-      repository: tibco/ems-client
+      repository: tibco/ems-client-psc
       tag: "8.6.0"
     server:
       repository: ems-server
