@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  tibco-ems-client:
+  tibco-ems-client-psc:
     build:
       context: ./ems-client
       dockerfile: Dockerfile
