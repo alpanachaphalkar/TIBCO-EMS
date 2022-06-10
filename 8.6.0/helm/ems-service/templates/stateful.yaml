@@ -75,5 +75,5 @@ spec:
       volumes:
         - name: tibemsd-volume
           hostPath:
-            path: "/home/docker/ems-local-storage-volume"
+            path: "/home/docker/om-ems-local-storage-volume"
             type: DirectoryOrCreate
