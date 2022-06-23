@@ -5,7 +5,8 @@ metadata:
   annotations:
     "sidecar.istio.io/inject": "false"
     "helm.sh/hook": post-install,post-upgrade
-    "helm.sh/hook-weight": "60"
+    "helm.sh/hook-weight": "10"
+    "helm.sh/hook-delete-policy": hook-succeeded
   labels:
 {{ include "emsClient.labels" $ | indent 4 }}
 spec:
@@ -14,7 +15,7 @@ spec:
       initContainers:
         - name: check-ems-svc
           image: busybox:latest
-          command: ["sh", "-c", "until nslookup ems-svc.ems.svc.cluster.local; do echo waiting for ems-svc; sleep 2; done;"]
+          command: ["sh", "-c", "until nslookup ems-svc; do echo waiting for ems-svc; sleep 2; done;"]
       containers:
       - name: ems-client-container
         image: "{{ .Values.ems.image.client.repository }}:{{ .Values.ems.image.client.tag | default .Values.emsVersion }}"
