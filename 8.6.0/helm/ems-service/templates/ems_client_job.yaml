@@ -12,9 +12,9 @@ spec:
   template:
     spec:
       initContainers:
-        - name: init
+        - name: check-ems-svc
           image: busybox:latest
-          command: ["sh", "-c", "until nslookup ems-svc; do echo waiting for ems-svc; sleep 2; done;"]
+          command: ["sh", "-c", "until nslookup ems-svc.ems.svc.cluster.local; do echo waiting for ems-svc; sleep 2; done;"]
       containers:
       - name: ems-client-container
         image: "{{ .Values.ems.image.client.repository }}:{{ .Values.ems.image.client.tag | default .Values.emsVersion }}"
