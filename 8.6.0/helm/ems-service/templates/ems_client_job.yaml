@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ems-client-deployment
+  name: ems-client-job
   annotations:
     "sidecar.istio.io/inject": "false"
     "helm.sh/hook": post-install,post-upgrade
