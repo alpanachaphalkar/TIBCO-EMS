@@ -6,7 +6,7 @@ metadata:
     "sidecar.istio.io/inject": "false"
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "10"
-    #"helm.sh/hook-delete-policy": hook-succeeded
+    "helm.sh/hook-delete-policy": hook-succeeded
   labels:
 {{ include "emsClient.labels" $ | indent 4 }}
 spec:
