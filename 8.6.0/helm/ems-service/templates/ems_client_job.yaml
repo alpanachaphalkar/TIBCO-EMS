@@ -1,0 +1,69 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ems-client-job
+  annotations:
+    "sidecar.istio.io/inject": "false"
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "10"
+    #"helm.sh/hook-delete-policy": hook-succeeded
+  labels:
+{{ include "emsClient.labels" $ | indent 4 }}
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: check-ems-svc
+          image: busybox:latest
+          command: ["sh", "-c", "until nslookup ems-svc; do echo waiting for ems-svc; sleep 2; done;"]
+      containers:
+        - name: ems-client-container
+          image: "{{ .Values.ems.image.client.repository }}:{{ .Values.ems.image.client.tag | default .Values.emsVersion }}"
+          command: [ "/bin/sh" ]
+          args: [ "-c", "tibemsadmin -server tcp://${env_ems_svc}:${env_ems_svc_port} -user ${env_ems_user} -ignore -script /home/tibuser/tibco/config_template/ems-config.template && sh /home/tibuser/tibco/entrypoint.sh" ]
+          imagePullPolicy: {{ .Values.ems.image.pullPolicy }}
+          env:
+            - name: INIT_FLAG
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-properties-config
+                  key: INIT_FLAG
+            - name: env_ems_svc
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-properties-config
+                  key: env_ems_svc
+            - name: env_ems_svc_port
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-properties-config
+                  key: env_ems_svc_port
+        {{- if .Values.secret.env_ems_user }}
+            - name: env_ems_user
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: env_ems_user
+        {{- end }}
+        {{- if .Values.secret.env_ems_password }}
+            - name: env_ems_password
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: env_ems_password
+        {{- end }}
+        {{- if .Values.secret.env_ems_new_password }}
+            - name: env_ems_new_password
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: env_ems_new_password
+        {{- end }}
+          volumeMounts:
+            - name: ems-script-vol
+              mountPath: "/home/tibuser/tibco/config_template"
+      restartPolicy: OnFailure
+      volumes:
+        - name: ems-script-vol
+          configMap:
+            name: {{ .Release.Name }}-script-config
