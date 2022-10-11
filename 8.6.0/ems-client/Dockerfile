@@ -1,8 +1,6 @@
-FROM eu.gcr.io/de-fo-gr-pr-shared/tibco/om/base:1.0
+FROM tibco/base:1.0
 
 ARG EMS_VERSION
-
-RUN chown -R tibuser:tibuser /home/tibuser
 
 RUN mkdir -p /home/tibuser/tibco
 RUN chmod -R 777 /home/tibuser/tibco/
@@ -22,7 +20,6 @@ RUN chmod -R 777 $TIBCO_HOME/ems_scripts/*
 COPY entrypoint.sh $TIBCO_HOME/entrypoint.sh
 RUN chmod -R 777 $TIBCO_HOME/entrypoint.sh
 
-USER tibuser
+USER root
 
 ENTRYPOINT ["/home/tibuser/tibco/entrypoint.sh"]
-

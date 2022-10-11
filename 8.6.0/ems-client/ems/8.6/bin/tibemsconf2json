@@ -1,0 +1,8 @@
+#!/bin/bash
+
+EMSCA_SCRIPT_BASE="$(cd "${0%/*}" 2>/dev/null; echo "$PWD")"
+
+EMS_BIN=${EMSCA_SCRIPT_BASE}
+EMS_LIB=${EMSCA_SCRIPT_BASE}/../lib
+
+exec java -classpath "${EMS_BIN}/tibemsca.jar:${EMS_LIB}/jms-2.0.jar:${EMS_LIB}/tibjms.jar:${EMS_BIN}/json_simple-1.1.jar" com.tibco.messaging.emsca.converter.ConfigurationConverter "$@"

@@ -1,0 +1,4 @@
+create queue jeopardy.order.amendment
+create queue jeopardy.order.amendment.dead
+
+create bridge source=topic:tibco.aff.orchestrator.outbound.notification target=queue:jeopardy.order.amendment selector="NotificationType='ORDERAMENDMENT'"

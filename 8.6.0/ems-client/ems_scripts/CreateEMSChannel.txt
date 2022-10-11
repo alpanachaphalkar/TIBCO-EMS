@@ -49,6 +49,7 @@ create queue tibco.aff.orchestrator.order.amend
 create queue tibco.aff.orchestrator.order.resume
 create queue tibco.aff.centrallog.queue
 create queue tibco.aff.oms.ordersService
+create queue tibco.aff.oms.ordersSequencer.submitOrder
 create queue tibco.aff.orchestrator.order.submitResponse
 create queue tibco.aff.oms.syncorderstatusrecovery
 create queue tibco.aff.oms.events.jeopardy.update
