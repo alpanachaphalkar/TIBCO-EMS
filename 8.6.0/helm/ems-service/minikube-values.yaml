@@ -15,12 +15,13 @@ ems:
   image:
     registry: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems
     client:
-      repository: tibco/ems-client
-      tag: "8.6.0"
+      repository: registry.cloud.okteto.net/ems-alpanachaphalkar/tibco-ems-client
+      tag: "okteto"
     server:
       repository: ems-server
       tag: "8.6.0"
-    pullPolicy: Never
+      imagePullSecrets: gcr-registry
+    pullPolicy: IfNotPresent
   ports:
     tibemsd-tcp: 7222
     probe-tcp: 7220
@@ -49,4 +50,4 @@ ems:
   service:
     port:  30722
     targetPort: 7222
-    type: LoadBalancer
+    type: ClusterIP

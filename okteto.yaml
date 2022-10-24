@@ -1,0 +1,14 @@
+name: tibco
+
+build:
+  base:
+    context: tibco/base/1.0
+  ems-client:
+    context: 8.6.0/ems-client
+    args:
+      EMS_VERSION: "8.6"
+
+deploy:
+  commands:
+    - name: Deploy
+      command: helm install ems-service -f 8.6.0/helm/ems-service/minikube-values.yaml 8.6.0/helm/ems-service

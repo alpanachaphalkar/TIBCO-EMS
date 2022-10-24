@@ -1,4 +1,4 @@
-FROM tibco/base:1.0
+FROM registry.cloud.okteto.net/ems-alpanachaphalkar/tibco-base:okteto
 
 ARG EMS_VERSION
 
