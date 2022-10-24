@@ -13,12 +13,11 @@ secret:
   env_ems_new_password: YWRtaW4=
 ems:
   image:
-    registry: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems
     client:
       repository: registry.cloud.okteto.net/ems-alpanachaphalkar/tibco-ems-ems-client
       tag: "okteto"
     server:
-      repository: ems-server
+      repository: alpanachaphalkar/tibco-ems
       tag: "8.6.0"
       imagePullSecrets: gcr-registry
     pullPolicy: IfNotPresent
