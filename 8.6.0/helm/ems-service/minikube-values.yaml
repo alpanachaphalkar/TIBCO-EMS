@@ -15,7 +15,7 @@ ems:
   image:
     registry: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems
     client:
-      repository: registry.cloud.okteto.net/ems-alpanachaphalkar/tibco-ems-client
+      repository: registry.cloud.okteto.net/ems-alpanachaphalkar/tibco-ems-ems-client
       tag: "okteto"
     server:
       repository: ems-server
