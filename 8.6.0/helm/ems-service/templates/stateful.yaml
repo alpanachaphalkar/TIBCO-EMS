@@ -15,6 +15,13 @@ spec:
       labels:
 {{ include "ems.selectorLabels" $ | indent 8 }}
     spec:
+      initContainers:
+      - name: volume-mount-hack
+        image: busybox:latest
+        command: [ "sh", "-c", "chmod -R 777 /shared" ]
+        volumeMounts:
+          - name: tibemsd-volume
+            mountPath: {{ .Values.ems.containers.mountPath }}
       containers:
         - name: tibemsd-container
           image: "{{ .Values.ems.image.server.repository }}:{{ .Values.ems.image.server.tag | default .Values.emsVersion }}"
