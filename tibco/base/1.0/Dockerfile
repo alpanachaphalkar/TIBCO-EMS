@@ -29,7 +29,7 @@ RUN microdnf clean all \
         && microdnf -y update \
         && microdnf -y install wget tar gzip findutils python38 python38-pip\
         && microdnf -y install rsync \
-        && microdnf clean all \
+        && microdnf clean all
 
 RUN pip install gdown \
         && gdown --id 12LLSp3Ud7dwJiXbMPQTbvyQAYFwxbKB8 --output jdk-11*_linux-x64*.tar.gz
