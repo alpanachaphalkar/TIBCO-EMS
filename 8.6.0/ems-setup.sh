@@ -1,6 +1,6 @@
 eval $(minikube docker-env) && docker pull eu.gcr.io/de-fo-gr-pr-shared/tibco/ems/ems-server:8.6.0 && docker pull busybox:latest
 
-docker login -u oauth2accesstoken --password-stdin https://eu.gcr.io | gcloud auth print-access-token
+kubectl create secret docker-registry my-secret --docker-server=eu.gcr.io --docker-username=alpana.chaphalkar@sky.de --docker-password=*********** --docker-email=alpana.chaphalkar@sky.de
 
 kubectl create ns ems
 
