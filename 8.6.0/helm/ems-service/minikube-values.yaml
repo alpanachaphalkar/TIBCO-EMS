@@ -14,11 +14,11 @@ secret:
 ems:
   image:
     client:
-      repository: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems/ems-server
-      tag: "8.6.0"
-    server:
       repository: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems/ems-client
       tag: "FULF1-2626"
+    server:
+      repository: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems/ems-server
+      tag: "8.6.0"
     imagePullSecrets: gcr-registry
     pullPolicy: IfNotPresent
   ports:
