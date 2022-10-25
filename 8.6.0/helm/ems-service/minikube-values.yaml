@@ -14,12 +14,12 @@ secret:
 ems:
   image:
     client:
-      repository: registry.cloud.okteto.net/ems-alpanachaphalkar/tibco-ems-ems-client
-      tag: "okteto"
-    server:
-      repository: alpanachaphalkar/tibco-ems
+      repository: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems/ems-server
       tag: "8.6.0"
-      imagePullSecrets: gcr-registry
+    server:
+      repository: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems/ems-client
+      tag: "FULF1-2626"
+    imagePullSecrets: gcr-registry
     pullPolicy: IfNotPresent
   ports:
     tibemsd-tcp: 7222

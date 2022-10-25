@@ -1,12 +1,12 @@
 name: tibco
 
-build:
-  base:
-    context: tibco/base/1.0
-  ems-client:
-    context: 8.6.0/ems-client
-    args:
-      EMS_VERSION: "8.6"
+#build:
+#  base:
+#    context: tibco/base/1.0
+#  ems-client:
+#    context: 8.6.0/ems-client
+#    args:
+#      EMS_VERSION: "8.6"
 
 deploy:
   commands:

@@ -12,6 +12,8 @@ metadata:
 spec:
   template:
     spec:
+      imagePullSecrets:
+        - name: {{ .Values.ems.image.imagePullSecrets }}
       initContainers:
         - name: check-ems-svc
           image: busybox:latest

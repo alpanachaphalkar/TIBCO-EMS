@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gcr-registry
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJldS5nY3IuaW8iOnsidXNlcm5hbWUiOiJhbHBhbmEuY2hhcGhhbGthckBza3kuZGUiLCJwYXNzd29yZCI6IkFscGEzMDkyQFN5c0FyY2giLCJlbWFpbCI6ImFscGFuYS5jaGFwaGFsa2FyQHNreS5kZSIsImF1dGgiOiJZV3h3WVc1aExtTm9ZWEJvWVd4cllYSkFjMnQ1TG1SbE9rRnNjR0V6TURreVFGTjVjMEZ5WTJnPSJ9fX0=
