@@ -1,4 +1,4 @@
-FROM eu.gcr.io/de-fo-gr-pr-shared/tibco/om/base:1.0
+FROM registry.cloud.okteto.net/ems-alpanachaphalkar/tibco-ems-base:okteto
 
 ARG EMS_VERSION
 

@@ -3,7 +3,7 @@ environment: dev
 name: ems
 extraEnv:
   INIT_FLAG: "true"
-  env_ems_svc: ems-svc.psc-ems.svc.cluster.local
+  env_ems_svc: ems-svc.psc-ems-alpanachaphalkar.svc.cluster.local
   env_ems_svc_port: 7222
   env_ems_user: admin
   env_ems_new_password: admin
@@ -15,10 +15,10 @@ ems:
   image:
     registry: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems
     client:
-      repository: tibco/ems-client-psc
-      tag: "8.6.0"
+      repository: registry.cloud.okteto.net/ems-alpanachaphalkar/tibco-ems-psc-ems-client
+      tag: "okteto"
     server:
-      repository: ems-server
+      repository: alpanachaphalkar/tibco-ems
       tag: "8.6.0"
     pullPolicy: Never
   ports:
@@ -49,4 +49,4 @@ ems:
   service:
     port:  7222
     targetPort: 7222
-    type: LoadBalancer
+    type: ClusterIP
