@@ -14,8 +14,8 @@ secret:
 ems:
   image:
     client:
-      repository: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems/ems-client
-      tag: "FULF1-2626"
+      repository: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems/test/ems-client
+      tag: "8.6.0"
     server:
       repository: eu.gcr.io/de-fo-gr-pr-shared/tibco/ems/ems-server
       tag: "8.6.0"
