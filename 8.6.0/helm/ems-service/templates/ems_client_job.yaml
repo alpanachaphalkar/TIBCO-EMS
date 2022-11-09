@@ -22,6 +22,12 @@ spec:
       - name: ems-client-container
         image: "{{ .Values.ems.image.registry }}/{{ .Values.ems.image.client.repository }}:{{ .Values.ems.image.tag | default .Values.emsVersion }}"
         imagePullPolicy: {{ .Values.ems.image.pullPolicy }}
+        command:
+        - /bin/sh
+        - -c
+        - |
+          tibemsadmin -server tcp://${env_ems_svc}:${env_ems_svc_port} -user ${env_ems_user} -ignore -script $TIBCO_HOME/init_script/ems-config.txt
+          sh $TIBCO_HOME/entrypoint.sh
         env:
         - name: INIT_FLAG
           valueFrom:
@@ -61,7 +67,7 @@ spec:
         {{- end }}
         volumeMounts:
         - name: ems-script-vol
-          mountPath: "/home/tibuser/tibco/ems_scripts"
+          mountPath: "/home/tibuser/tibco/init_script"
       restartPolicy: OnFailure
       volumes:
       - name: ems-script-vol
