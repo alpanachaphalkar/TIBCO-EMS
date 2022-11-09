@@ -5,7 +5,7 @@ metadata:
   annotations:
     "sidecar.istio.io/inject": "false"
     "helm.sh/hook": post-install,post-upgrade
-    "helm.sh/hook-weight": "10"
+    "helm.sh/hook-weight": "1"
     "helm.sh/hook-delete-policy": hook-succeeded
   labels:
 {{ include "emsClient.labels" $ | indent 4 }}
@@ -20,9 +20,7 @@ spec:
           command: ["sh", "-c", "until nslookup ems-svc; do echo waiting for ems-svc; sleep 2; done;"]
       containers:
       - name: ems-client-container
-        image: "{{ .Values.ems.image.client.repository }}:{{ .Values.ems.image.client.tag | default .Values.emsVersion }}"
-        command: [ "/bin/sh" ]
-        args: [ "-c", "tibemsadmin -server tcp://${env_ems_svc}:${env_ems_svc_port} -user ${env_ems_user} -ignore -script /home/tibuser/tibco/config_template/ems-config.template && sh /home/tibuser/tibco/entrypoint.sh" ]
+        image: "{{ .Values.ems.image.registry }}/{{ .Values.ems.image.client.repository }}:{{ .Values.ems.image.tag | default .Values.emsVersion }}"
         imagePullPolicy: {{ .Values.ems.image.pullPolicy }}
         env:
         - name: INIT_FLAG
@@ -63,7 +61,7 @@ spec:
         {{- end }}
         volumeMounts:
         - name: ems-script-vol
-          mountPath: "/home/tibuser/tibco/config_template"
+          mountPath: "/home/tibuser/tibco/ems_scripts"
       restartPolicy: OnFailure
       volumes:
       - name: ems-script-vol
