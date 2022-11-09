@@ -26,8 +26,8 @@ spec:
         - /bin/sh
         - -c
         - |
-          tibemsadmin -server tcp://${env_ems_svc}:${env_ems_svc_port} -user ${env_ems_user} -ignore -script $TIBCO_HOME/init_script/ems-config.txt
-          sh $TIBCO_HOME/entrypoint.sh
+          tibemsadmin -server tcp://${env_ems_svc}:${env_ems_svc_port} -user ${env_ems_user} -ignore -script $TIBCO_HOME/init_script/ems-config.txt \
+          && sh $TIBCO_HOME/entrypoint.sh
         env:
         - name: INIT_FLAG
           valueFrom:
