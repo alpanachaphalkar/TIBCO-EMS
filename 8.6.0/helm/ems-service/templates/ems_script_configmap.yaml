@@ -1,7 +1,6 @@
 apiVersion: v1
 data:
   ems-config.txt: |-
-    set password ${env_ems_user} ${env_ems_new_password}
     setprop factory ConnectionFactory URL=tcp://${env_ems_svc}:${env_ems_svc_port}
     setprop factory FTConnectionFactory URL=tcp://${env_ems_svc}:${env_ems_svc_port}
     setprop factory FTQueueConnectionFactory URL=tcp://${env_ems_svc}:${env_ems_svc_port}
@@ -9,6 +8,7 @@ data:
     setprop factory TopicConnectionFactory URL=tcp://${env_ems_svc}:${env_ems_svc_port}
     setprop factory QueueConnectionFactory URL=tcp://${env_ems_svc}:${env_ems_svc_port}
     setprop factory GenericConnectionFactory URL=tcp://${env_ems_svc}:${env_ems_svc_port}
+    set password ${env_ems_user} ${env_ems_new_password}
     commit
 kind: ConfigMap
 metadata:
