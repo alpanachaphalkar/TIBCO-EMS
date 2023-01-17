@@ -21,7 +21,7 @@ spec:
       {{- end }}
       initContainers:
       - name: volume-mount-hack
-        image: busybox:latest
+        image: eu.gcr.io/de-fo-gr-pr-shared/docker-base-images/system/tools:3.0.3
         command: ["sh", "-c", "chmod -R 777 /shared"]
         volumeMounts:
         - name: tibemsd-volume
