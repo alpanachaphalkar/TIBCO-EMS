@@ -15,7 +15,7 @@ spec:
       labels:
 {{ include "ems.selectorLabels" $ | indent 8 }}
     spec:
-      {{- if .Values.image.imagePullSecrets }}
+      {{- if .Values.ems.image.imagePullSecrets }}
       imagePullSecrets:
         - name: {{ .Values.ems.image.imagePullSecrets }}
       {{- end }}
