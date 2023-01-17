@@ -17,7 +17,7 @@ spec:
     spec:
       {{- if .Values.image.imagePullSecrets }}
       imagePullSecrets:
-        - name: {{ .Values.image.imagePullSecrets }}
+        - name: {{ .Values.ems.image.imagePullSecrets }}
       {{- end }}
       initContainers:
       - name: volume-mount-hack
