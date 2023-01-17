@@ -20,7 +20,7 @@ ems:
     server:
       repository: ems-server
       tag: "8.6.0"
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
     imagePullSecrets: gcr-registry
   ports:
     tibemsd-tcp: 7222

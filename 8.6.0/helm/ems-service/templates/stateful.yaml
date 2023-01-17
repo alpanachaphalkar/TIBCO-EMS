@@ -22,6 +22,7 @@ spec:
       initContainers:
       - name: volume-mount-hack
         image: eu.gcr.io/de-fo-gr-pr-shared/docker-base-images/system/net-utils:2.1.1
+        imagePullPolicy: {{ .Values.ems.image.pullPolicy }}
         command: ["sh", "-c", "chmod -R 777 /shared"]
         volumeMounts:
         - name: tibemsd-volume
