@@ -1,5 +1,9 @@
 name: tibco
 
+gcr:
+  url: https://eu.gcr.io
+  token: $GCP_AUTH_TOKEN
+
 build:
   base:
     context: tibco/base/1.0

@@ -18,7 +18,7 @@ ems:
       repository: registry.cloud.okteto.net/psc-ems-alpanachaphalkar/tibco-ems-psc-ems-client
       tag: "okteto"
     server:
-      repository: alpanachaphalkar/tibco-ems
+      repository: ems-server
       tag: "8.6.0"
     pullPolicy: Never
   ports:
