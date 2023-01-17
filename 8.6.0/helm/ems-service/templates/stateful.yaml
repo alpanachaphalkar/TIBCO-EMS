@@ -15,6 +15,10 @@ spec:
       labels:
 {{ include "ems.selectorLabels" $ | indent 8 }}
     spec:
+      {{- if .Values.image.imagePullSecrets }}
+      imagePullSecrets:
+        - name: {{ .Values.image.imagePullSecrets }}
+      {{- end }}
       initContainers:
       - name: volume-mount-hack
         image: busybox:latest
