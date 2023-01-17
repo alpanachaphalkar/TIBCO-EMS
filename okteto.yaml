@@ -11,4 +11,4 @@ build:
 deploy:
   commands:
     - name: Deploy
-      command: helm upgrade --install ems-service -f 8.6.0/helm/ems-service/minikube-values.yaml 8.6.0/helm/ems-service
+      command: helm upgrade --timeout 10m0s --install ems-service -f 8.6.0/helm/ems-service/minikube-values.yaml 8.6.0/helm/ems-service
