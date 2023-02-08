@@ -17,7 +17,7 @@ spec:
       initContainers:
         - name: check-ems-svc
           image: busybox:latest
-          command: ["sh", "-c", "until nslookup ems-svc; do echo waiting for ems-svc; sleep 2; done;"]
+          command: ["sh", "-c", "until nslookup ems-svc.ems-alpanachaphalkar.svc.cluster.local; do echo waiting for ems-svc.ems-alpanachaphalkar.svc.cluster.local; sleep 2; done;"]
       containers:
       - name: ems-client-container
         image: "{{ .Values.ems.image.registry }}/{{ .Values.ems.image.client.repository }}:{{ .Values.ems.image.tag | default .Values.emsVersion }}"
